@@ -155,9 +155,14 @@ export default function LandingPage({ navigate, openAuth }) {
               <div key={i} className="card" style={sec.sCard}
                 onMouseEnter={e=>{e.currentTarget.style.transform='translateY(-7px)';e.currentTarget.style.boxShadow='var(--shadow-md)'}}
                 onMouseLeave={e=>{e.currentTarget.style.transform='translateY(0)';e.currentTarget.style.boxShadow='var(--shadow-sm)'}}>
-                <div style={{...sec.icon, background:s.color}}>{s.icon}</div>
-                <h3 style={{...sec.sTitle, color:s.accent}}>{s.title}</h3>
-                <p style={sec.sDesc}>{s.desc}</p>
+                <div style={sec.sTop}>
+                  <div style={{...sec.icon, background:s.color}}>{s.icon}</div>
+                  <div style={sec.sAccentLine} />
+                </div>
+                <div style={sec.sBody}>
+                  <h3 style={{...sec.sTitle, color:s.accent}}>{s.title}</h3>
+                  <p style={sec.sDesc}>{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -176,10 +181,14 @@ export default function LandingPage({ navigate, openAuth }) {
             {STEPS.map((s,i) => (
               <React.Fragment key={i}>
                 <div style={steps.step}>
-                  <div style={steps.num}>{s.n}</div>
-                  <div style={steps.circle}>{s.icon}</div>
-                  <h4 style={steps.title}>{s.title}</h4>
-                  <p style={steps.desc}>{s.desc}</p>
+                  <div style={steps.stepTop}>
+                    <div style={steps.num}>{s.n}</div>
+                    <div style={steps.circle}>{s.icon}</div>
+                  </div>
+                  <div style={steps.stepBody}>
+                    <h4 style={steps.title}>{s.title}</h4>
+                    <p style={steps.desc}>{s.desc}</p>
+                  </div>
                 </div>
                 {i < STEPS.length-1 && <div style={steps.arrow}>→</div>}
               </React.Fragment>
@@ -390,20 +399,25 @@ const sec = {
   cream: { padding:'90px 5%',background:'var(--cream)' },
   container: { maxWidth:1200,margin:'0 auto' },
   center: { textAlign:'center',marginBottom:52,display:'flex',flexDirection:'column',alignItems:'center' },
-  grid3: { display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(290px,1fr))',gap:22 },
-  sCard: { padding:28,transition:'all 0.3s ease',cursor:'default' },
+  grid3: { display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(320px,1fr))',gap:24 },
+  sCard: { padding:'30px 28px',transition:'all 0.3s ease',cursor:'default',minHeight:250,display:'flex',flexDirection:'column',justifyContent:'space-between',background:'linear-gradient(180deg,#fff 0%,#fcfbf8 100%)' },
+  sTop: { display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:18,marginBottom:22 },
   icon: { width:56,height:56,borderRadius:14,display:'flex',alignItems:'center',justifyContent:'center',fontSize:24,marginBottom:18 },
+  sAccentLine: { flex:1,height:2,borderRadius:999,background:'linear-gradient(90deg,var(--border),transparent)',marginTop:28 },
+  sBody: { display:'flex',flexDirection:'column',gap:10 },
   sTitle: { fontFamily:'Cormorant Garamond,serif',fontSize:'1.1rem',fontWeight:700,marginBottom:8 },
-  sDesc: { color:'var(--muted)',lineHeight:1.7,fontSize:'0.88rem' },
+  sDesc: { color:'var(--muted)',lineHeight:1.8,fontSize:'0.92rem' },
 };
 const steps = {
-  row: { display:'flex',alignItems:'flex-start',justifyContent:'center',gap:0,flexWrap:'wrap' },
-  step: { display:'flex',flexDirection:'column',alignItems:'center',textAlign:'center',maxWidth:175,padding:'0 8px' },
-  num: { fontFamily:'Cormorant Garamond,serif',fontSize:'0.78rem',fontWeight:700,color:'var(--teal)',letterSpacing:'0.08em',marginBottom:10 },
-  circle: { width:60,height:60,borderRadius:'50%',background:'linear-gradient(135deg,rgba(11,124,111,0.08),rgba(19,176,156,0.08))',border:'2px solid var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,marginBottom:14 },
-  title: { fontFamily:'Cormorant Garamond,serif',fontSize:'1rem',fontWeight:700,color:'var(--ink)',marginBottom:6 },
-  desc: { fontSize:'0.78rem',color:'var(--muted)',lineHeight:1.6 },
-  arrow: { fontSize:'1.4rem',color:'var(--teal)',opacity:0.3,paddingTop:28,alignSelf:'center' },
+  row: { display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(190px,1fr))',gap:18,alignItems:'stretch' },
+  step: { display:'flex',flexDirection:'column',justifyContent:'space-between',textAlign:'left',padding:'24px 20px',borderRadius:22,background:'#fff',border:'1px solid var(--border)',boxShadow:'var(--shadow-sm)',minHeight:230,position:'relative',overflow:'hidden' },
+  stepTop: { display:'flex',justifyContent:'space-between',alignItems:'center',gap:16,marginBottom:20 },
+  stepBody: { display:'flex',flexDirection:'column',gap:8 },
+  num: { fontFamily:'Cormorant Garamond,serif',fontSize:'0.88rem',fontWeight:700,color:'var(--teal)',letterSpacing:'0.08em' },
+  circle: { width:62,height:62,borderRadius:'18px',background:'linear-gradient(135deg,rgba(11,124,111,0.08),rgba(19,176,156,0.14))',border:'1px solid var(--border)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:24,flexShrink:0 },
+  title: { fontFamily:'Cormorant Garamond,serif',fontSize:'1.15rem',fontWeight:700,color:'var(--ink)' },
+  desc: { fontSize:'0.84rem',color:'var(--muted)',lineHeight:1.75 },
+  arrow: { display:'none' },
   ctaBox: { marginTop:52,background:'linear-gradient(135deg,var(--teal-dark),var(--teal))',borderRadius:22,padding:'28px 36px',display:'flex',alignItems:'center',gap:24,flexWrap:'wrap',boxShadow:'0 20px 48px rgba(11,124,111,0.25)' },
 };
 const doc = {

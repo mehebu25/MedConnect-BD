@@ -78,6 +78,8 @@ const api = {
       throw new Error('Backend error at /records/store.php. Check XAMPP/PHP output for this endpoint.');
     }
 
+
+
     if (!res.ok) throw new Error(data.message || 'Something went wrong');
     return data;
   },
